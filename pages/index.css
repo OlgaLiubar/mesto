@@ -281,10 +281,23 @@ align-items: center;
   color: #545454;
 }
 
+@media screen and (min-width: 1280px) {
+  .footer {
+    padding: 67px 0 60px 0;
+  }
+}
+
 .footer__copyright {
   font-size: 14px;
   line-height: 17px;
   margin: 0;
+}
+
+@media screen and (min-width: 1280px) {
+  .footer__copyright {
+    font-size: 18px;
+    line-height: 122%;
+  }
 }
 
 /* Попап из вебинара */
