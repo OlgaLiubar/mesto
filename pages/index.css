@@ -321,7 +321,6 @@ align-items: center;
 .popup__window {
   background-color: #fff;
   min-width: 282px;
-  max-width: 430px;
   padding: 25px 22px;
   max-width: 1100px;
   position: relative;
