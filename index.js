@@ -1,31 +1,35 @@
-// выбираем узлы
-const headerButtonNode = document.querySelector('.header__button');
-const popupNode = document.querySelector('.popup');
-const popupCloseButtonNode = document.querySelector('.popup__close-button');
+// для открытия-скрытия попапа
+let profileEditButton = document.querySelector('.profile__edit-button');
+let popup = document.querySelector('.popup');
+let popupCloseButton = document.querySelector('.popup__close-button');
 // для формы
-const leadTitleNode = document.querySelector('.lead__title');
-const formNode = document.querySelector('.form');
-const formInputNode = document.querySelector('.form__input');
-const formButtonNode = document.querySelector('.form__button');
-
+let popupForm = document.querySelector('.popup__form');
+let nameInput = document.querySelector('.form__input_name');
+let jobInput = document.querySelector('.form__input_occupation');
+let profileTitle = document.querySelector('.profile__title');
+let profileOccupation = document.querySelector('.profile__occupation');
+let profileSaveButton = document.querySelector('.form__button');
 
 // для открытия-скрытия попапа
 
-headerButtonNode.addEventListener('click', handleHeaderButtonClick);
-popupCloseButtonNode.addEventListener('click', handlePopupCloseButtonClick);
+profileEditButton.addEventListener('click', handleProfileEditButtonClick);
+popupCloseButton.addEventListener('click', handlePopupCloseButtonClick);
 
-function handleHeaderButtonClick() {
-  popupNode.classList.add('popup_visible');
+function handleProfileEditButtonClick() {
+  popup.classList.add('popup_opened');
 }
 
 function handlePopupCloseButtonClick() {
-  popupNode.classList.remove('popup_visible');
+  popup.classList.remove('popup_opened');
 }
 
-// для формы
-formNode.addEventListener('submit', )
+// для отправки формы
+popupForm.addEventListener('submit', formSubmitHandler);
+profileSaveButton.addEventListener('click', handlePopupCloseButtonClick);
 
-function handleFormSubmit(event) {
-  event.preventDefault();
-  leadTitleNode.textContent =  formInputNode.value;
-}
+function formSubmitHandler (evt) {
+  evt.preventDefault();
+    profileTitle.textContent = nameInput.value;
+    profileOccupation.textContent = jobInput.value;
+  }
+
