@@ -1,0 +1,21 @@
+.profile__user {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 189px 18px;
+  grid-template-rows: 132px 26px 14px;
+  column-gap: 10px;
+  row-gap: 14px;
+  padding-top: 40px;
+  padding-left: 27px;
+}
+
+@media screen and (min-width: 1280px) {
+  .profile__user {
+    grid-template-columns: 132px minmax(min-content, max-content) 24px;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 18px;
+    padding-left: 0;
+    padding-bottom: 50px;
+    row-gap: 0;
+  }
+}

@@ -1,0 +1,13 @@
+.profile__image {
+  width: 120px;
+  border-radius: 50%;
+  justify-self: center;
+}
+
+@media screen and (min-width: 1280px) {
+  .profile__image {
+    justify-self: start;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+}
