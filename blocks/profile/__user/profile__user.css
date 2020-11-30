@@ -2,9 +2,9 @@
   display: grid;
   justify-content: center;
   grid-template-columns: 189px 18px;
-  grid-template-rows: 132px 26px 14px;
+  grid-template-rows: 136px minmax(min-content, max-content) minmax(min-content, max-content);
   column-gap: 10px;
-  row-gap: 14px;
+  row-gap: 10px;
   padding-top: 40px;
   padding-left: 27px;
 }

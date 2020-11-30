@@ -8,7 +8,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: -15px;
 }
 
 @media screen and (min-width: 1280px) {

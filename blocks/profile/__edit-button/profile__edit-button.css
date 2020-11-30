@@ -6,9 +6,8 @@
   background-size: cover;
   background-color: #000;
   border: none;
-  align-self: end;
+  align-self: center;
   grid-row-start: 2;
-
   min-width: 18px;
   min-height: 18px;
 }
@@ -22,7 +21,7 @@
   .profile__edit-button {
     grid-row-start: 1;
     grid-column-start: 3;
-
+    align-self: end;
     min-width: 24px;
     min-height: 24px;
   }
