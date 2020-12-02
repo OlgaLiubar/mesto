@@ -1,4 +1,4 @@
-.popup__heading {
+.form__heading {
   margin: 0;
   margin-bottom: 75px;
   color: #000;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .popup__heading {
+  .form__heading {
     font-size: 24px;
     text-align: left;
     line-height: 29px;

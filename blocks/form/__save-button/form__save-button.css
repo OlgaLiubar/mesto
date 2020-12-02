@@ -1,4 +1,4 @@
-.form__button {
+.form__save-button {
   width: 100%;
   min-height: 46px;
   border: none;
@@ -16,7 +16,7 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .form__button {
+  .form__save-button {
     font-size: 18px;
     line-height: 22px;
     margin-top: 18px;
