@@ -9,6 +9,7 @@
   height: 24px;
   border: none;
   background-color: transparent;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .popup__close-button:hover {

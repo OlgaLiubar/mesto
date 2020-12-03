@@ -8,7 +8,6 @@ let nameInput = document.querySelector('.form__input_type_name');
 let jobInput = document.querySelector('.form__input_type_occupation');
 let profileTitle = document.querySelector('.profile__title');
 let profileOccupation = document.querySelector('.profile__occupation');
-let profileSaveButton = document.querySelector('.form__save-button');
 
 // для открытия-скрытия попапа
 
