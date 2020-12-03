@@ -10,6 +10,7 @@
   background-position: center;
   background-color: #000;
   border: #fff 2px solid;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .profile__add-button:hover {

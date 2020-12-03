@@ -10,6 +10,7 @@
   grid-row-start: 2;
   min-width: 18px;
   min-height: 18px;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .profile__edit-button:hover {
