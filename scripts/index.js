@@ -56,15 +56,9 @@ let profileEditButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 // let popupCloseButton = document.querySelector('.popup__close-button');
 
-// для формы
-let popupForm = document.querySelector('.form');
-let nameInput = document.querySelector('.form__input_type_name');
-let jobInput = document.querySelector('.form__input_type_occupation');
-let profileTitle = document.querySelector('.profile__title');
-let profileOccupation = document.querySelector('.profile__occupation');
-const profileAddButton = document.querySelector('.profile__add-button')
 
 // для открытия-скрытия попапа
+const profileAddButton = document.querySelector('.profile__add-button')
 
 profileEditButton.addEventListener('click', handleProfileEditButtonClick);
 profileAddButton.addEventListener('click', handleProfileAddButtonClick);
@@ -98,16 +92,43 @@ function handlePopupCloseButtonClick(evt) {
   targetItem.classList.remove('popup_opened');
 }
 
-// для отправки формы
-popupForm.addEventListener('submit', formSubmitHandler);
+// для формы "редактировать профиль"
+// let popupForm = document.querySelector('.form');
 
-function formSubmitHandler (evt) {
+const popupEditForm = document.querySelector('.form_type_edit');
+let nameInput = document.querySelector('.form__input_type_name');
+let jobInput = document.querySelector('.form__input_type_occupation');
+let profileTitle = document.querySelector('.profile__title');
+let profileOccupation = document.querySelector('.profile__occupation');
+
+
+// для отправки формы "редактировать профиль"
+popupEditForm.addEventListener('submit', editFormSubmitHandler);
+
+function editFormSubmitHandler (evt) {
   evt.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileOccupation.textContent = jobInput.value;
     handlePopupCloseButtonClick(evt);
   }
 
+// для формы "добавить карточку"
+const popupAddForm = document.querySelector('.form_type_add');
+const placeInput = document.querySelector('.form__input_type_place');
+const imgUrlInput = document.querySelector('.form__input_type_img-url');
 
+// для отправки формы "добавить карточку"
+popupAddForm.addEventListener('submit', addFormSubmitHandler);
 
+function addFormSubmitHandler (evt) {
+  evt.preventDefault();
+  const galleryItem = composeCard({
+    name: placeInput.value,
+    link: imgUrlInput.value
+  });
+  galleryContainerElement.prepend(galleryItem);
+    // profileTitle.textContent = nameInput.value;
+    // profileOccupation.textContent = jobInput.value;
+    handlePopupCloseButtonClick(evt);
+  }
 
