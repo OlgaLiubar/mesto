@@ -30,8 +30,6 @@ const initialCards = [
 const galleryContainerElement = document.querySelector('.gallery__elements'); 
 const templateElement = document.querySelector('.gallery-template');
 
-
-
 function renderGallery() {
   const galleryItems = initialCards.map(composeCard);
   galleryContainerElement.append(...galleryItems);
@@ -48,29 +46,20 @@ function composeCard(card){
   return newCard;
 }
 
-// для открытия-скрытия попапа
-let profileEditButton = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-// let popupCloseButton = document.querySelector('.popup__close-button');
-
-
-// для открытия-скрытия попапа
+// для открытия-скрытия попапа профиля
+const profileEditButton = document.querySelector('.profile__edit-button');
+const popup = document.querySelector('.popup');
 const profileAddButton = document.querySelector('.profile__add-button')
 
 profileEditButton.addEventListener('click', handleProfileEditButtonClick);
 profileAddButton.addEventListener('click', handleProfileAddButtonClick);
-// popupCloseButton.addEventListener('click', handlePopupCloseButtonClick);
 
-
-//добавили слушатель для всех кнопок "закрыть"
+//слушатель для всех кнопок "закрыть"
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 
 popupCloseButtons.forEach(function (button) {
   button.addEventListener('click', handlePopupCloseButtonClick);
 });
-
-
-
 
 function handleProfileEditButtonClick() {
   popup.classList.add('popup_opened');
@@ -90,13 +79,12 @@ function handlePopupCloseButtonClick(evt) {
 }
 
 // для формы "редактировать профиль"
-// let popupForm = document.querySelector('.form');
 
 const popupEditForm = document.querySelector('.form_type_edit');
-let nameInput = document.querySelector('.form__input_type_name');
-let jobInput = document.querySelector('.form__input_type_occupation');
-let profileTitle = document.querySelector('.profile__title');
-let profileOccupation = document.querySelector('.profile__occupation');
+const nameInput = document.querySelector('.form__input_type_name');
+const jobInput = document.querySelector('.form__input_type_occupation');
+const profileTitle = document.querySelector('.profile__title');
+const profileOccupation = document.querySelector('.profile__occupation');
 
 
 // для отправки формы "редактировать профиль"
@@ -126,16 +114,22 @@ function addFormSubmitHandler(evt) {
   galleryItem.src = galleryItem.link;
   galleryContainerElement.prepend(galleryItem);
   bindEventListenerImages();
+  bindEventListenerLikeButtons();
+  bindEventListenerDeleteCardButtons(); 
   handlePopupCloseButtonClick(evt);
   return galleryItem;
 }
 
   //для удаления карточки
-const deleteCardButtons = document.querySelectorAll('.card__delete-button');
 
-deleteCardButtons.forEach(function (button) {
-  button.addEventListener('click', handleDeleteCardButtonClick);
-});
+function bindEventListenerDeleteCardButtons() {
+  const deleteCardButtons = document.querySelectorAll('.card__delete-button');
+  deleteCardButtons.forEach(function (button) {
+    button.addEventListener('click', handleDeleteCardButtonClick);
+  });
+}
+  
+bindEventListenerDeleteCardButtons();
 
 function handleDeleteCardButtonClick (evt) {
   const targetImage = evt.target;
@@ -143,7 +137,7 @@ function handleDeleteCardButtonClick (evt) {
   targetCard.remove();
 }
 
-//слушатель для открытия попапа с изображением
+//слушатель для открытия попапа с просмотром изображения
 
 function bindEventListenerImages() {
   const galleryImages = document.querySelectorAll('.card__photo');
@@ -166,13 +160,14 @@ function handleGalleryImageClick(evt) {
 
 //для лайка
 
+function bindEventListenerLikeButtons() {
+  const likeButtons = document.querySelectorAll('.card__like-btn');
+  likeButtons.forEach (function(button){
+  button.addEventListener('click', handleLike);
+  });
+}
 
-const likeButtons = document.querySelectorAll('.card__like-btn');
-
-likeButtons.forEach (function(button){
- button.addEventListener('click', handleLike);
-});
-
+bindEventListenerLikeButtons(); 
 
 function handleLike(evt){
   evt.target.classList.toggle("card__like-btn_active");

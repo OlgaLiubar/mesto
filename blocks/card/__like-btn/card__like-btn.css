@@ -18,6 +18,7 @@
   cursor: pointer;
 }
 
-.card__like-btn_active {
-  background-image: url(../../../images/likeButtonBlack.svg);
+.card__like-btn:focus {
+  outline-style: none;
 }
+
