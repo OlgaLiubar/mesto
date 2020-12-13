@@ -48,9 +48,6 @@ function composeCard(card){
   return newCard;
 }
 
-
-
-
 // для открытия-скрытия попапа
 let profileEditButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
@@ -105,7 +102,7 @@ let profileOccupation = document.querySelector('.profile__occupation');
 // для отправки формы "редактировать профиль"
 popupEditForm.addEventListener('submit', editFormSubmitHandler);
 
-function editFormSubmitHandler (evt) {
+function editFormSubmitHandler(evt) {
   evt.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileOccupation.textContent = jobInput.value;
@@ -120,15 +117,63 @@ const imgUrlInput = document.querySelector('.form__input_type_img-url');
 // для отправки формы "добавить карточку"
 popupAddForm.addEventListener('submit', addFormSubmitHandler);
 
-function addFormSubmitHandler (evt) {
+function addFormSubmitHandler(evt) {
   evt.preventDefault();
   const galleryItem = composeCard({
     name: placeInput.value,
     link: imgUrlInput.value
-  });
+    });
+  galleryItem.src = galleryItem.link;
   galleryContainerElement.prepend(galleryItem);
-    // profileTitle.textContent = nameInput.value;
-    // profileOccupation.textContent = jobInput.value;
-    handlePopupCloseButtonClick(evt);
-  }
+  bindEventListenerImages();
+  handlePopupCloseButtonClick(evt);
+  return galleryItem;
+}
 
+  //для удаления карточки
+const deleteCardButtons = document.querySelectorAll('.card__delete-button');
+
+deleteCardButtons.forEach(function (button) {
+  button.addEventListener('click', handleDeleteCardButtonClick);
+});
+
+function handleDeleteCardButtonClick (evt) {
+  const targetImage = evt.target;
+  const targetCard = targetImage.closest('.gallery__element');
+  targetCard.remove();
+}
+
+//слушатель для открытия попапа с изображением
+
+function bindEventListenerImages() {
+  const galleryImages = document.querySelectorAll('.card__photo');
+  galleryImages.forEach(function (img) {
+  img.addEventListener('click', handleGalleryImageClick);
+  });
+}
+
+bindEventListenerImages();
+
+
+function handleGalleryImageClick(evt) {
+  const popupViewImage = document.querySelector('.popup_type_view-image');
+  const popupCardPhoto = document.querySelector('.popup__card-image');
+  popupCardPhoto.src = evt.target.src;
+  const popupCardCaption = document.querySelector('.popup__caption'); 
+  popupCardCaption.textContent = evt.target.nextElementSibling.textContent;
+  popupViewImage.classList.add('popup_opened');
+}
+
+//для лайка
+
+
+const likeButtons = document.querySelectorAll('.card__like-btn');
+
+likeButtons.forEach (function(button){
+ button.addEventListener('click', handleLike);
+});
+
+
+function handleLike(evt){
+  evt.target.classList.toggle("card__like-btn_active");
+}

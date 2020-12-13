@@ -6,7 +6,7 @@
   overflow: hidden;
   object-fit: cover;
   flex: 1;
-  /* position: relative; */
+  position: relative;
 
   display: flex;
   flex-direction: column;
