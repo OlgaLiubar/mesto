@@ -29,8 +29,10 @@ const initialCards = [
 
 const galleryContainerElement = document.querySelector('.gallery__elements'); 
 const templateElement = document.querySelector('.gallery-template');
+const profilePopup = document.querySelector('.popup_type_edit-profile');
 const addCardPopup = document.querySelector('.popup_type_add-image');
 const viewImagePopup = document.querySelector('.popup_type_view-image');
+
 
 function renderGallery() {
   const galleryItems = initialCards.map(composeCard);
@@ -56,7 +58,6 @@ function composeCard(card){
 
 // для открытия-скрытия попапа профиля
 const profileEditButton = document.querySelector('.profile__edit-button');
-const profilePopup = document.querySelector('.popup_type_edit-profile');
 const profileAddButton = document.querySelector('.profile__add-button')
 
 profileEditButton.addEventListener('click', handleProfileEditButtonClick);
