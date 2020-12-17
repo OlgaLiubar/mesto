@@ -32,6 +32,8 @@ const templateElement = document.querySelector('.gallery-template');
 const profilePopup = document.querySelector('.popup_type_edit-profile');
 const addCardPopup = document.querySelector('.popup_type_add-image');
 const viewImagePopup = document.querySelector('.popup_type_view-image');
+const popupCardPhoto = document.querySelector('.popup__card-image');
+const popupCardCaption = document.querySelector('.popup__caption'); 
 
 
 function renderGallery() {
@@ -50,7 +52,9 @@ function composeCard(card){
   cardPhotoElement.alt = card.name;
   const deleteCardButton = newCard.querySelector('.card__delete-button');
   deleteCardButton.addEventListener('click', handleDeleteCardButtonClick);
-  cardPhotoElement.addEventListener('click', handleGalleryImageClick);
+  cardPhotoElement.addEventListener('click', () => {
+    handleGalleryImageClick(card)
+  });
   const likeButton = newCard.querySelector('.card__like-btn');
   likeButton.addEventListener('click', handleLike);
   return newCard;
@@ -143,12 +147,10 @@ function handleDeleteCardButtonClick (evt) {
 
 //для открытия попапа с просмотром изображения
 
-function handleGalleryImageClick(evt) {
+function handleGalleryImageClick(card) {
   openPopup(viewImagePopup); 
-  const popupCardPhoto = document.querySelector('.popup__card-image');
-  popupCardPhoto.src = evt.target.src;
-  const popupCardCaption = document.querySelector('.popup__caption'); 
-  popupCardCaption.textContent = evt.target.alt;
+  popupCardPhoto.src = card.link;
+  popupCardCaption.textContent = card.name;
 }
 
 //для лайка
