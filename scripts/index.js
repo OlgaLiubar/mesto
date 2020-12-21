@@ -78,11 +78,29 @@ popupCloseButtons.forEach(function (button) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscPress);
+  document.addEventListener('click', handleOverlayClick);
 }
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscPress);
+  document.removeEventListener('click', handleOverlayClick);
 } 
 
+function  handleEscPress(evt) {
+  if(evt.key === 'Escape') {
+     const openedPopup = document.querySelector('.popup_opened');
+     closePopup(openedPopup);
+  }
+}
+
+function handleOverlayClick(evt) {
+  if(evt.target.classList.contains('popup')){
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup); 
+  }
+}
 
 function handleProfileEditButtonClick() {
   openPopup(profilePopup);
@@ -122,6 +140,7 @@ function editFormSubmitHandler(evt) {
 const popupAddForm = document.querySelector('.form_type_add');
 const placeInput = document.querySelector('.form__input_type_place');
 const imgUrlInput = document.querySelector('.form__input_type_img-url');
+const cardSubmitButton = document.querySelector('.form__save-button_type_add');
 
 // для отправки формы "добавить карточку"
 popupAddForm.addEventListener('submit', addFormSubmitHandler);
@@ -132,6 +151,7 @@ function addFormSubmitHandler(evt) {
     name: placeInput.value,
     link: imgUrlInput.value
     });
+  cardSubmitButton.classList.add('form__save-button_invalid');
   galleryContainerElement.prepend(galleryItem);
   closePopup(addCardPopup)
   popupAddForm.reset()
@@ -158,3 +178,5 @@ function handleGalleryImageClick(card) {
 function handleLike(evt){
   evt.target.classList.toggle("card__like-btn_active");
 }
+
+
