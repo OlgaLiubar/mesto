@@ -44,7 +44,7 @@
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
 
-        <form action="#" name="edit-profile" class="form form_type_edit">
+        <form action="#" name="edit-profile" class="form form_type_edit" novalidate>
           <h2 class="form__heading">Редактировать профиль</h2>
           <input id="name-user" minlength="2" maxlength="40" type="text" name="name" value="Жак-Ив Кусто" class="form__input form__input_type_name" required>
           <span id="name-user-error" class="error"></span>
@@ -63,7 +63,7 @@
 
       <form action="#" name="add-card" class="form form_type_add" novalidate>
         <h2 class="form__heading">Новое место</h2>
-        <input id="name-card" minlength="3" maxlength="200" type="text" class="form__input form__input_type_place" name="place name" value="" placeholder="Название" required>
+        <input id="name-card" minlength="3" maxlength="200" type="text" class="form__input form__input_type_place" name="place-name" value="" placeholder="Название" required>
 
         <span id="name-card-error" class="error"></span>
 
@@ -96,7 +96,8 @@
       </figure>
     </li>
 </template>
-  
+
+<script src="scripts/initial-сards.js"></script>
 <script src="scripts/index.js"></script>
 <script src="scripts/validate.js"></script>
 </body>

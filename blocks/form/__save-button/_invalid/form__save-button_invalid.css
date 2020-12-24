@@ -4,3 +4,8 @@
     border-radius: 2px;
     background: #FFFFFF;
 }
+
+.form__save-button_invalid:hover {
+    opacity: 1;
+    cursor: default;
+  }
