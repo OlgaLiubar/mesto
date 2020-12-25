@@ -25,6 +25,7 @@ const profileOccupation = document.querySelector('.profile__occupation');
 const popupAddForm = document.querySelector('.form_type_add');
 const placeInput = document.querySelector('.form__input_type_place');
 const imgUrlInput = document.querySelector('.form__input_type_img-url');
+const addCardSubmitButton = document.querySelector('.form__save-button_type_add');
 
 
 function openPopup(popup) {
@@ -103,8 +104,7 @@ function handleProfileEditButtonClick() {
 
 function handleProfileAddButtonClick() {
   openPopup(addCardPopup)
-  const submitButton = document.querySelector('.form__save-button_type_add');
-  setButtonState(submitButton, popupAddForm.checkValidity(), validationConfig);
+  setButtonState(addCardSubmitButton, popupAddForm.checkValidity(), validationConfig);
 }
 
 function handlePopupCloseButtonClick(evt) {
