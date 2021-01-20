@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
+
 <body class="container">
   <div class="page">
 
@@ -16,27 +18,27 @@
     <main class="content">
 
       <section class="profile">
-          <div class="profile__user">
-            <img class="profile__image" src="./images/userpic.png" alt="аватар">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <p class="profile__occupation">Исследователь океана</p>
-            <button type="button" class="profile__edit-button"></button>
-          </div>
+        <div class="profile__user">
+          <img class="profile__image" src="./images/userpic.png" alt="аватар">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <p class="profile__occupation">Исследователь океана</p>
+          <button type="button" class="profile__edit-button"></button>
+        </div>
 
         <button type="button" class="profile__add-button"></button>
       </section>
 
       <section class="gallery">
         <ul class="gallery__elements">
-          
-        </ul> 
+
+        </ul>
       </section>
 
     </main>
 
     <footer class="footer">
       <p class="footer__copyright">
-          &copy; 2020 Mesto Russia
+        &copy; 2020 Mesto Russia
       </p>
     </footer>
 
@@ -46,10 +48,12 @@
 
         <form action="#" name="edit-profile" class="form form_type_edit" novalidate>
           <h2 class="form__heading">Редактировать профиль</h2>
-          <input id="name-user" minlength="2" maxlength="40" type="text" name="name" value="Жак-Ив Кусто" class="form__input form__input_type_name" required>
+          <input id="name-user" minlength="2" maxlength="40" type="text" name="name" value="Жак-Ив Кусто"
+            class="form__input form__input_type_name" required>
           <span id="name-user-error" class="error"></span>
 
-          <input id="occupation" minlength="2" maxlength="200" type="text" name="occupation" value="Исследователь океана" class="form__input form__input_type_occupation" required>
+          <input id="occupation" minlength="2" maxlength="200" type="text" name="occupation"
+            value="Исследователь океана" class="form__input form__input_type_occupation" required>
           <span id="occupation-error" class="error"></span>
           <button type="submit" class="form__save-button">Сохранить</button>
         </form>
@@ -63,11 +67,13 @@
 
       <form action="#" name="add-card" class="form form_type_add" novalidate>
         <h2 class="form__heading">Новое место</h2>
-        <input id="name-card" minlength="3" maxlength="200" type="text" class="form__input form__input_type_place" name="place-name" value="" placeholder="Название" required>
+        <input id="name-card" minlength="3" maxlength="200" type="text" class="form__input form__input_type_place"
+          name="place-name" value="" placeholder="Название" required>
 
         <span id="name-card-error" class="error"></span>
 
-        <input id="link" type="url" class="form__input form__input_type_img-url" name="url" value="" placeholder="Ссылка на картинку" required>
+        <input id="link" type="url" class="form__input form__input_type_img-url" name="url" value=""
+          placeholder="Ссылка на картинку" required>
 
         <span id="link-error" class="error"></span>
 
@@ -78,16 +84,16 @@
 
   <div class="popup popup_type_view-image">
     <div class="popup__container-image">
-        <img src ="#" alt="#" class="popup__card-image">
-        <p class="popup__caption"></p>
-        <button class="popup__close-button" type="button"></button>
-    </div>    
-</div> 
+      <img src="#" alt="#" class="popup__card-image">
+      <p class="popup__caption"></p>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </div>
 
-<template class="gallery-template">
+  <template class="gallery-template">
     <li class="gallery__element">
       <figure class="card">
-        <img class="card__photo" src ="#" alt="фото">
+        <img class="card__photo" src="#" alt="фото">
         <figcaption class="card__caption">
           <h2 class="card__caption-title"></h2>
           <button type="button" class="card__like-btn"></button>
@@ -95,10 +101,11 @@
         <button type="button" class="card__delete-button"></button>
       </figure>
     </li>
-</template>
+  </template>
 
-<script src="scripts/initial-сards.js"></script>
-<script src="scripts/index.js"></script>
-<script src="scripts/validate.js"></script>
+
+  <script src="scripts/initial-сards.js"></script>
+  <script type="module" src="scripts/index.js"></script>
 </body>
+
 </html>
