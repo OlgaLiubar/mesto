@@ -9,15 +9,21 @@ export default class FormValidator {
   }
 
   enableValidation = () => {
-    const forms = document.querySelectorAll('.form');
-    forms.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
 
-      this._setEventListeners();
-
+    this._formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
     });
+
+    this._setEventListeners();
+
+  }
+
+  resetValidation = () => {
+    this._inputList.forEach((inputElement) => {
+      this._hideError(inputElement)
+    });
+
+    this._setButtonState();
   }
 
   _setEventListeners = () => {

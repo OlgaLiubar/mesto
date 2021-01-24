@@ -4,6 +4,10 @@ import FormValidator from './FormValidator.js';
 const galleryContainerElement = document.querySelector('.gallery__elements');
 const profilePopup = document.querySelector('.popup_type_edit-profile');
 const addCardPopup = document.querySelector('.popup_type_add-image');
+//для попапа с увеличенным изображением
+const imagePopupPicture = document.querySelector('.popup__card-image');
+const imagePopupCaption = document.querySelector('.popup__caption');
+const imagePopup = document.querySelector('.popup_type_view-image');
 
 // для открытия-скрытия попапа профиля
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -33,6 +37,12 @@ function openPopup(popup) {
   document.addEventListener('click', handleOverlayClick);
 }
 
+function handleCardClick(name, link) {
+  imagePopupPicture.src = link
+  imagePopupCaption.textContent = name
+  openPopup(imagePopup)
+}
+
 function handleEscPress(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
@@ -52,29 +62,30 @@ function closePopup(popup) {
   document.removeEventListener('click', handleOverlayClick);
 }
 
+function createCard(item) {
+  const card = new Card(item, ".gallery-template", handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement
+}
+
 // Рендер карточки
 initialCards.forEach((item) => {
-  const card = new Card(item, 'gallery-template');
-  const cardElement = card.generateCard();
-  document.querySelector('.gallery__elements').append(cardElement);
+  const cardElement = createCard(item);
+  galleryContainerElement.append(cardElement);
 });
 
+
 function handleProfileEditButtonClick() {
-  openPopup(profilePopup);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileOccupation.textContent;
+  profileValidator.resetValidation();
+  openPopup(profilePopup);
 }
 
 function handleProfileAddButtonClick() {
-  openPopup(addCardPopup)
-
-  if (popupAddForm.checkValidity()) {
-    addCardSubmitButton.classList.remove(config.buttonInvalidSelector);
-    addCardSubmitButton.disabled = false;
-  } else {
-    addCardSubmitButton.classList.add(config.buttonInvalidSelector);
-    addCardSubmitButton.disabled = true;
-  }
+  popupAddForm.reset();
+  addCardValidator.resetValidation()
+  openPopup(addCardPopup);
 }
 
 function handlePopupCloseButtonClick(evt) {
@@ -92,15 +103,13 @@ function handleProfileFormSubmit(evt) {
 function handleNewCardSubmit(evt) {
   evt.preventDefault();
 
-  const newCard = new Card({
+  const card = createCard({
     name: placeInput.value,
-    link: imgUrlInput.value
+    link: imgUrlInput.value,
   });
-
-  const card = newCard.generateCard();
   galleryContainerElement.prepend(card);
-  closePopup(addCardPopup)
-  popupAddForm.reset()
+  closePopup(addCardPopup);
+  popupAddForm.reset();
 }
 
 
@@ -127,8 +136,9 @@ const config = {
   inputInvalidSelector: 'form__input_state_invalid'
 };
 
-const formsList = Array.from(document.querySelectorAll('.form'));
-formsList.forEach((item) => {
-  const formValidation = new FormValidator(config, item);
-  formValidation.enableValidation();
-});
+const profileValidator = new FormValidator(config, popupEditForm);
+profileValidator.enableValidation();
+
+const addCardValidator = new FormValidator(config, popupAddForm);
+addCardValidator.enableValidation();
+
