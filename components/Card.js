@@ -1,28 +1,8 @@
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', handleEscPress);
-    document.removeEventListener('click', handleOverlayClick);
-}
-
-function handleEscPress(evt) {
-    if (evt.key === 'Escape') {
-        const openedPopup = document.querySelector('.popup_opened');
-        closePopup(openedPopup);
-    }
-}
-
-function handleOverlayClick(evt) {
-    if (evt.target.classList.contains('popup_opened')) {
-        closePopup(evt.target);
-    }
-}
-
 export default class Card {
 
-    constructor(data, cardSelector, handleCardClick) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor({ name, link }, cardSelector, handleCardClick) {
+        this._name = name;
+        this._link = link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._cardTemplate = document.querySelector(cardSelector).content.querySelector('.card');
@@ -58,12 +38,8 @@ export default class Card {
             this._handleDeleteCardButtonClick();
         });
         //повесить на фотографию карточки слушатель клика
-        // this._element.querySelector('.card__photo').addEventListener('click', () => {
-        //     this._handleGalleryImageClick();
-        // });
-
         this._cardImage.addEventListener('click', () => {
-            this._handleCardClick(this._name, this._link)
+            this._handleCardClick(this._name, this._link);
         });
 
         //повесить на кнопку лайка слушатель клика

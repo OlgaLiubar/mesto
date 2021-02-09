@@ -1,6 +1,6 @@
 //массив для изначальных карточек
 
-const initialCards = [
+export const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,4 +25,14 @@ const initialCards = [
         name: 'Байкал',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-]; 
+];
+
+// валидация формы
+
+export const config = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.form__save-button',
+    buttonInvalidSelector: 'form__save-button_invalid',
+    inputInvalidSelector: 'form__input_state_invalid'
+};
