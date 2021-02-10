@@ -1,6 +1,3 @@
-// import {
-//     initialCards
-// } from '../utils/constants.js';
 
 export default class Section {
     constructor({ data, renderer }, containerSelector) {

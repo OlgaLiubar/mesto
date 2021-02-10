@@ -1,29 +1,36 @@
 //массив для изначальных карточек
 
+const acatenangoImage = new URL('../images/Acatenango.jpg', import.meta.url);
+const fuegoImage = new URL('../images/Fuego.jpg', import.meta.url);
+const playaImage = new URL('../images/MazuntePlaya.jpg', import.meta.url);
+const puertoImage = new URL('../images/PuertoEscondido.jpg', import.meta.url);
+const mazunteImage = new URL('../images/Mazunte.jpg', import.meta.url);
+const piterImage = new URL('../images/Piter.jpg', import.meta.url);
+
 export const initialCards = [
     {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        name: 'Акатенанго',
+        link: acatenangoImage
     },
     {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        name: 'Фуэго',
+        link: fuegoImage
     },
     {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        name: 'Пляж в Масунте',
+        link: playaImage
     },
     {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        name: 'Пуэрто Эскондидо',
+        link: puertoImage
     },
     {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        name: 'Масунте',
+        link: mazunteImage
     },
     {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        name: 'Питер',
+        link: piterImage
     }
 ];
 
