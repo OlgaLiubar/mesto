@@ -2,13 +2,13 @@ import './index.css';
 import {
   initialCards,
   config
-} from '../utils/constants.js';
-import Card from '../components/Card.js';
-import FormValidator from '../components/FormValidator.js';
-import Section from '../components/Section.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import UserInfo from '../components/UserInfo.js';
+} from './utils/constants.js';
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
+import Section from './components/Section.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
 
 const galleryContainerElement = document.querySelector('.gallery__elements');
 
@@ -31,9 +31,6 @@ const profileOccupation = document.querySelector('.profile__occupation');
 // для формы "добавить карточку"
 const popupAddForm = document.querySelector('.form_type_add');
 
-
-profileEditButton.addEventListener('click', handleProfileEditButtonClick);
-profileAddButton.addEventListener('click', handleProfileAddButtonClick);
 
 //селекторы
 
@@ -97,16 +94,18 @@ const popupWithEditForm = new PopupWithForm({
   }
 })
 
-function handleProfileEditButtonClick(evt) {
+
+profileEditButton.addEventListener('click', function handleProfileEditButtonClick(evt) {
   const data = userInfo.getUserInfo();
   profileTitle.textContent = data.name;
   profileOccupation.textContent = data.occupation;
   profileValidator.resetValidation();
   popupWithEditForm.openPopup();
-}
+});
 
-function handleProfileAddButtonClick(evt) {
+profileAddButton.addEventListener('click', function handleProfileAddButtonClick(evt) {
   addCardValidator.resetValidation();
   popupWithAddForm.openPopup();
-}
+});
+
 
