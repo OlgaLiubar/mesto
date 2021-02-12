@@ -33,7 +33,9 @@ const popupAddForm = document.querySelector('.form_type_add');
 
 
 //селекторы
-
+const imagePopupSelector = '.popup_type_view-image';
+const addCardPopupSelector = '.popup_type_add-image';
+const profilePopupSelector = '.popup_type_edit-profile';
 const userNameSelector = '.profile__title';
 const userInfoSelector = '.profile__occupation';
 
@@ -47,10 +49,12 @@ addCardValidator.enableValidation();
 
 // попап с большим изображением
 
+const popupWithImage = new PopupWithImage(imagePopupSelector);
+popupWithImage.setEventListeners();
+
 function handleCardClick(name, link) {
-  const popup = new PopupWithImage(name, link, imagePopup);
-  popup.openPopup();
-}
+  popupWithImage.openPopup(name, link);
+} 
 
 function createCard(data) {
   const card = new Card(data, ".gallery-template", handleCardClick);
@@ -72,27 +76,32 @@ cardList.renderItems();
 
 
 const popupWithAddForm = new PopupWithForm({
-  popupElement: addCardPopup,
+  popupSelector: addCardPopupSelector,
   handleFormSubmit: (cardItem) => {
     const cardElement = createCard({
       name: cardItem.place,
       link: cardItem.url,
     }, ".gallery-template", handleCardClick)
-    galleryContainerElement.prepend(cardElement);
+    cardList.prependItem(cardElement);
     popupWithAddForm.closePopup();
-    popupWithAddForm.removeEventListeners();
   }
 });
+
+popupWithAddForm.setEventListeners();
+
+
 
 const userInfo = new UserInfo({ userNameSelector, userInfoSelector });
 
 const popupWithEditForm = new PopupWithForm({
-  popupElement: profilePopup,
+  popupSelector: profilePopupSelector,
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
     popupWithEditForm.closePopup();
   }
 })
+
+popupWithEditForm.setEventListeners();
 
 
 profileEditButton.addEventListener('click', function handleProfileEditButtonClick(evt) {

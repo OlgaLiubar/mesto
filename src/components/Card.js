@@ -51,6 +51,7 @@ export default class Card {
     //для удаления карточки
     _handleDeleteCardButtonClick() {
         this._element.remove();
+        this._element = null;
     }
     //для лайка
     _handleLike() {
