@@ -27,6 +27,8 @@ const profileAddButton = document.querySelector('.profile__add-button')
 const popupEditForm = document.querySelector('.form_type_edit');
 const profileTitle = document.querySelector('.profile__title');
 const profileOccupation = document.querySelector('.profile__occupation');
+const inputProfileNameElement = document.querySelector('.form__input_type_name');
+const inputProfileCaptionElement = document.querySelector('.form__input_type_occupation');
 
 // для формы "добавить карточку"
 const popupAddForm = document.querySelector('.form_type_add');
@@ -106,8 +108,8 @@ popupWithEditForm.setEventListeners();
 
 profileEditButton.addEventListener('click', function handleProfileEditButtonClick(evt) {
   const data = userInfo.getUserInfo();
-  profileTitle.textContent = data.name;
-  profileOccupation.textContent = data.occupation;
+  inputProfileNameElement.value = data.name;
+  inputProfileCaptionElement.value = data.occupation;
   profileValidator.resetValidation();
   popupWithEditForm.openPopup();
 });
