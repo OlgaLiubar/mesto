@@ -1,11 +1,14 @@
 export default class Card {
 
-    constructor({ name, link }, cardSelector, handleCardClick) {
+    constructor({ name, link }, cardSelector, handleCardClick, ownerId) {
+        this._data = data;
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._cardTemplate = document.querySelector(cardSelector).content.querySelector('.card');
+        // this._apiInstance = apiInstance;
+        this._ownerId = ownerId;
     }
 
     _getTemplate() {
@@ -13,6 +16,12 @@ export default class Card {
         const cardElement = this._cardTemplate.cloneNode(true);
         return cardElement;
     }
+
+    _checkIsMyCard() {
+        if (this._data.owner._id !== this._ownerId) {
+            this._element.querySelector(".card__delete-button").style.display = "none";
+          }
+      }
 
     generateCard() {
         this._element = this._getTemplate();
@@ -25,11 +34,21 @@ export default class Card {
 
         //поставить в подпись имя из объекта карточек
         this._element.querySelector('.card__caption-title').textContent = this._name;
-
+        
+        //скрыть кнопку "удалить" для чужих карточек
+        this._checkIsMyCard();
+        
         //повесить обработчики
         this._setEventListeners();
 
         return this._element;
+    }
+
+    _saveCard =  (data) => {
+        this._apiInstance
+        .uploadCard(data)
+        .then((resData) => this.generateCard(resData.name))
+        .catch(err = console.log(err))
     }
 
     _setEventListeners() {
@@ -50,8 +69,13 @@ export default class Card {
 
     //для удаления карточки
     _handleDeleteCardButtonClick() {
-        this._element.remove();
-        this._element = null;
+        this._apiInstance
+        .removeCard(this._id)
+        .then(()=>{
+            this._element.remove();
+            this._element = null;
+        })
+        .catch((err) => console.log(err))
     }
     //для лайка
     _handleLike() {
