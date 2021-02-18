@@ -1,11 +1,11 @@
 .card__like-btn {
   padding: 0;
-  margin-left: 30px;
   box-sizing: border-box;
-  height: 18px;
+  height: 19px;
   min-width: 21px;
   background-image: url(../../../images/likeButton.svg);
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
   background-color: transparent;
   color: #000;

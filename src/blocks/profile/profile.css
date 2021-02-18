@@ -1,6 +1,6 @@
 .profile {
   margin: 0 auto;
-  padding: 0 19px;
+  padding: 38px 19px 36px 19px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +11,6 @@
     .profile {
       flex-direction: row;
       justify-content: space-between;
-      padding: 0;
+      padding: 40px 0 50px 0;
     }
   }

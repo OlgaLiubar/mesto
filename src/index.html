@@ -12,20 +12,26 @@
   <div class="page">
 
     <header class="header">
-      <img src="./images/headerLogo.svg" alt="Mesto" class="header__logo">
+      <img src="<%=require('./images/headerLogo.svg')%>" alt="Mesto" class="header__logo">
     </header>
 
     <main class="content">
 
       <section class="profile">
         <div class="profile__user">
-         <div class="profile__userpick-container">
-          <img class="profile__image" src="./images/userpic.png" alt="аватар">
-          <button class="profile__edit-userpick-button"></button>
-         </div>
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <p class="profile__occupation">Исследователь океана</p>
-          <button type="button" class="profile__edit-button"></button>
+
+          <div class="profile__userpick-container">
+            <img class="profile__image" src="<%=require('./images/userpic.png')%>" alt="аватар">
+            <button class="profile__edit-userpick-button"></button>
+          </div>
+
+          <div class="profile__info-container">
+            <div class="profile__info">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <p class="profile__occupation">Исследователь океана</p>
+            </div>
+            <button type="button" class="profile__edit-button"></button>
+          </div>
         </div>
 
         <button type="button" class="profile__add-button"></button>
@@ -127,8 +133,10 @@
         <img class="card__photo" src="#" alt="фото">
         <figcaption class="card__caption">
           <h2 class="card__caption-title"></h2>
-          <button type="button" class="card__like-btn"></button>
-          <span class="card__likes-count">0</span>
+          <div class="card__likes-container">
+            <button type="button" class="card__like-btn"></button>
+            <span class="card__likes-count">0</span>
+          </div>
         </figcaption>
         <button type="button" class="card__delete-button"></button>
       </figure>
