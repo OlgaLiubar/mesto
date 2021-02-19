@@ -92,7 +92,7 @@ export default class Api {
   }
 
     deleteLike(data) {
-      return fetch(`${this._url}cards/likes${data._id}`, {
+      return fetch(`${this._url}cards/likes/${data._id}`, {
         method: 'DELETE',
         headers: this._headers,
       }).then(this._checkResult)

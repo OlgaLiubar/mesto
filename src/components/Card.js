@@ -46,6 +46,9 @@ export default class Card {
         //показываем счетчик лайков
         this.setLikeCount(this._data.likes.length);
 
+        //показываем свои лайки
+        this._checkIsLiked();
+
         //повесить обработчики
         this._setEventListeners();
 
@@ -55,26 +58,24 @@ export default class Card {
         return this._element;
     }
 
-    //для удаления карточки
-    // _deleteCard() {
-    //   this._handleCardRequest(this._element.id, "DELETE").catch((err) =>
-    //     console.log(err)
-    //   );
-
-    // this._element.remove();
-    // this._element = null;
-    // }
     //для лайка
+    _checkIsLiked() {
+      this._data.likes.forEach((likeOwner) => {
+        if (likeOwner._id === this._ownerId) {
+          this._element.querySelector('.card__like-btn').classList.add("card__like-btn_active");
+        }
+      })
+    }
 
     _like(data) {
-        this._likeButton.classList.add("card__like-btn_active");
-        this._setLike(data);
-      }
+      this._likeButton.classList.add("card__like-btn_active");
+      this._setLike(data);
+    }
 
-    _dislike(data) {
-        this._likeButton.classList.remove("card__like-btn_active");
-        this._deleteLike(data);
-      }
+  _dislike(data) {
+      this._likeButton.classList.remove("card__like-btn_active");
+      this._deleteLike(data);
+    }
 
     setLikeCount(count){
         this._element.querySelector(".card__likes-count").textContent = count;

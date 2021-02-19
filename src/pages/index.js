@@ -1,6 +1,22 @@
 import './index.css';
 import {
-  config
+  config,
+  profileEditButton,
+  profileAddButton,
+  editUserpickButton,
+  popupEditForm,
+  inputProfileNameElement,
+  inputProfileCaptionElement,
+  popupAddForm,
+  imagePopupSelector,
+  addCardPopupSelector,
+  profilePopupSelector,
+  userNameSelector,
+  userInfoSelector,
+  confirmDeletePopupSelector,
+  editUserpickPopupSelector,
+  cardListSelector,
+  userAvatarSelector   
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -11,39 +27,6 @@ import ConfirmDeletePopup from '../components/ConfirmDeletePopup.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
-const galleryContainerElement = document.querySelector('.gallery__elements');
-
-//попапы
-const profilePopup = document.querySelector('.popup_type_edit-profile');
-const addCardPopup = document.querySelector('.popup_type_add-image');
-const imagePopup = document.querySelector('.popup_type_view-image');
-
-// кнопки
-const profileEditButton = document.querySelector('.profile__edit-button');
-const profileAddButton = document.querySelector('.profile__add-button')
-const confirmDeleteButton = document.querySelector('.form__save-button_type_confirm-delete')
-const editUserpickButton = document.querySelector('.profile__edit-userpick-button')
-
-// для формы "редактировать профиль"
-
-const popupEditForm = document.querySelector('.form_type_edit');
-const inputProfileNameElement = document.querySelector('.form__input_type_name');
-const inputProfileCaptionElement = document.querySelector('.form__input_type_occupation');
-
-// для формы "добавить карточку"
-const popupAddForm = document.querySelector('.form_type_add');
-
-
-//селекторы
-const imagePopupSelector = '.popup_type_view-image';
-const addCardPopupSelector = '.popup_type_add-image';
-const profilePopupSelector = '.popup_type_edit-profile';
-const userNameSelector = '.profile__title';
-const userInfoSelector = '.profile__occupation';
-const confirmDeletePopupSelector = '.popup_type_confirm-delete';
-const editUserpickPopupSelector = '.popup_type_edit-userpick';
-const cardListSelector = '.gallery__elements'
-const userAvatarSelector = '.profile__image';
 
 // валидация формы
 
@@ -82,6 +65,7 @@ api.getInitialData()
     const [userData, cardsData] = data;
     ownerId = userData._id;
     userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
     cardsList.renderItems(cardsData);
   })
   .catch((err) => {
@@ -96,7 +80,6 @@ popupWithImage.setEventListeners();
 
 //создание новой карточки
 function createCard(data) {
-  // console.log(data);
   const card = new Card(data, ".gallery-template", ownerId, {
     handleCardClick: (data) => {
       popupWithImage.openPopup(data.name, data.link);
@@ -105,7 +88,6 @@ function createCard(data) {
     setLike: (data) => {
       api.setLike(data)
         .then((data) => {
-          // console.log(data);
           card.setLikeCount(data.likes.length);
         })
         .catch((err) => {
@@ -116,7 +98,6 @@ function createCard(data) {
     deleteLike: (data) => {
       api.deleteLike(data)
         .then((data) => {
-          // console.log(data);
           card.setLikeCount(data.likes.length);
         })
         .catch((err) => {
@@ -136,7 +117,7 @@ function createCard(data) {
 const popupWithAddForm = new PopupWithForm({
   popupSelector: addCardPopupSelector,
   handleFormSubmit: (cardItem) => {
-    // popupWithAddForm.renderLoading(true);
+    popupWithAddForm.renderLoading(true);
     api.uploadCard(cardItem)
     .then((res) => {
       const cardElement = createCard(res);
@@ -162,7 +143,6 @@ const popupWithEditForm = new PopupWithForm({
     popupWithAddForm.renderLoading(true);
     api.uploadUserInfo(data)
     .then((res) => {
-      // console.log(res);
       userInfo.setUserInfo(res);
     })
     .finally(() => {
